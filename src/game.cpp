@@ -11,7 +11,8 @@ void Game::initWindow()
   this->window = new sf::RenderWindow(this->videoMode, "Game", sf::Style::Titlebar | sf::Style::Close);
   this->window->setFramerateLimit(60);
 }
-Game::Game() : player()
+
+Game::Game() : player(), platform()
 {
   this->initVariables();
   this->initWindow();
@@ -51,12 +52,13 @@ const bool Game::isRunning() const
 void Game::update()
 {
   this->pollEvents();
-  this->player.update(*this->window);
+  this->player.update(*this->window, this->platform);
 }
 
 void Game::render()
 {
   this->window->clear();
   this->player.render(this->window);
+  this->platform.render(this->window);
   this->window->display();
 }
