@@ -4,6 +4,7 @@
 void Player::initVariables()
 {
   this->health = 5;
+  this->canJump = false;
 }
 
 void Player::initPlayer()
@@ -19,10 +20,11 @@ Player::Player() :physics()
   this->initPlayer();
 }
 
-void Player::playerMovement(sf::RenderWindow& window, Platform& plat)
+void Player::playerMovement(sf::RenderWindow& window, Map& map)
 {
   static bool pressed = false;
-  this->canJump = this->platformCollision(plat);
+  this->canJump = false;
+  this->platformCollision(map);
 
   //Left and Right movement
   if(sf::Keyboard::isKeyPressed(sf::Keyboard::A) && this->player.getPosition().x > 0)
@@ -38,20 +40,20 @@ void Player::playerMovement(sf::RenderWindow& window, Platform& plat)
     pressed = true;
     this->physics.jump();
   }
+
   pressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Space);
 }
 
-bool Player::platformCollision(Platform& plat)
+void Player::platformCollision(Map& map)
 {
-  if(this->player.getGlobalBounds().intersects(plat.getShape().getGlobalBounds()))
+  for(size_t i = 0; i < map.returnShape().size(); i++)
   {
-    this->physics.resetVelocityY();
-    this->player.setPosition(this->player.getPosition().x, plat.getShape().getPosition().y - this->player.getGlobalBounds().height);
-    return true;
-  }
-  else 
-  {
-    return false;
+    if(map.returnShape()[i].getGlobalBounds().intersects(this->player.getGlobalBounds()))
+    {
+      this->physics.resetVelocityY();
+      this->player.setPosition(this->player.getPosition().x, map.returnShape()[i].getPosition().y - this->player.getGlobalBounds().height);
+      this->canJump = true;
+    }
   }
 }
 
@@ -60,9 +62,9 @@ const sf::RectangleShape& Player::getShape() const
   return this->player;
 }
 
-void Player::update(sf::RenderWindow& window, Platform& plat)
+void Player::update(sf::RenderWindow& window, Map& map)
 {
-  this->playerMovement(window, plat);
+  this->playerMovement(window, map);
   this->physics.updatePhysics();
   this->player.move(this->physics.returnVelocity());
 }

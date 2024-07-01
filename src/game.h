@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "player.h"
-#include "platform.h"
+#include "map.h"
 
 class Game
 {
@@ -17,7 +17,7 @@ private:
 
   //Classes
   Player player;
-  Platform platform;
+  Map map;
 
 public:
   Game();

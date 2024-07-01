@@ -12,7 +12,7 @@ void Game::initWindow()
   this->window->setFramerateLimit(60);
 }
 
-Game::Game() : player(), platform()
+Game::Game() : player(), map()
 {
   this->initVariables();
   this->initWindow();
@@ -52,13 +52,14 @@ const bool Game::isRunning() const
 void Game::update()
 {
   this->pollEvents();
-  this->player.update(*this->window, this->platform);
+  this->player.update(*this->window, this->map);
+  this->map.update();
 }
 
 void Game::render()
 {
   this->window->clear();
   this->player.render(this->window);
-  this->platform.render(this->window);
+  this->map.render(this->window);
   this->window->display();
 }

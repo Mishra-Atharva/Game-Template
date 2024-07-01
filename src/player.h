@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "platform.h"
 #include "physics.h"
+#include "map.h"
 
 class Player
 {
@@ -19,10 +19,10 @@ private:
 public:
   Player();
 
-  void playerMovement(sf::RenderWindow& window, Platform& plat);
-  bool platformCollision(Platform& plat);
+  void playerMovement(sf::RenderWindow& window, Map& map);
+  void platformCollision(Map& map);
   const sf::RectangleShape& getShape() const;
 
-  void update(sf::RenderWindow& window, Platform& plat);
+  void update(sf::RenderWindow& window, Map& map);
   void render(sf::RenderWindow* window);
 };
