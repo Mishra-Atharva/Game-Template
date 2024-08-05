@@ -6,23 +6,23 @@
 class Player
 {
 private:
-  int health;
-  sf::RectangleShape player;
+    int health;
+    sf::RectangleShape player;
 
-  bool canJump;
+    bool canJump;
 
-  void initVariables();
-  void initPlayer();
+    void initVariables();
+    void initPlayer();
 
-  Physics physics;
+    Physics physics;
 
 public:
-  Player();
+    Player();
 
-  void playerMovement(sf::RenderWindow& window, Map& map);
-  void platformCollision(Map& map);
-  const sf::RectangleShape& getShape() const;
+    void playerMovement(sf::RenderWindow& window, Map& map);
+    void platformCollision(Map& map);
+    const sf::RectangleShape& getShape() const;
 
-  void update(sf::RenderWindow& window, Map& map);
-  void render(sf::RenderWindow* window);
+    void update(sf::RenderWindow& window, Map& map);
+    void render(sf::RenderWindow* window);
 };

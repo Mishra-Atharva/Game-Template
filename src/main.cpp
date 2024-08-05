@@ -2,12 +2,12 @@
 
 int main()
 {
-  srand(static_cast<unsigned int>(time(NULL)));
-  Game game;
+    srand(static_cast<unsigned int>(time(NULL)));
+    Game game;
 
-  while(game.isRunning())
-  {
-    game.update();
-    game.render();
-  }
+    while(game.isRunning())
+    {
+        game.update();
+        game.render();
+    }
 }

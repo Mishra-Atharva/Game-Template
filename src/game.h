@@ -7,25 +7,25 @@ class Game
 {
 private:
 
-  sf::CircleShape spawnLine;
-  sf::VideoMode videoMode;
-  sf::RenderWindow* window;
-  sf::Event ev;
+    sf::CircleShape spawnLine;
+    sf::VideoMode videoMode;
+    sf::RenderWindow* window;
+    sf::Event ev;
 
-  void initVariables();
-  void initWindow();
+    void initVariables();
+    void initWindow();
 
-  //Classes
-  Player player;
-  Map map;
+    //Classes
+    Player player;
+    Map map;
 
 public:
-  Game();
-  virtual ~Game();
-  const bool isRunning() const;
+    Game();
+    virtual ~Game();
+    const bool isRunning() const;
 
-  void pollEvents();
+    void pollEvents();
 
-  void update();
-  void render();
+    void update();
+    void render();
 };
